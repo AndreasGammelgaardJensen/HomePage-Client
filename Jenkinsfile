@@ -14,8 +14,8 @@ pipeline {
 
         stage('Docker check and deploy') {
             steps {
-                sh '''
                 sh "docker build -t homepageclient_image_v1 ."
+                sh '''
                 #!/bin/bash
                 set +e
                 docker container list | grep hompageclient-app
