@@ -5,6 +5,7 @@ const About = () => {
        <div>
         <h1>About is working!!!</h1>
         <h2>About is working!!!</h2>
+        <h3>About is working!!!</h3>
        </div>
        
        
