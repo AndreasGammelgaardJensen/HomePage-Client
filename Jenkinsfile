@@ -21,15 +21,23 @@ pipeline {
                 docker container list | grep hompageclient-app
                 if [ $? -eq 0 ]; then
                     echo "Container already running"
+                    echo "removing it"
+                    docker stop hompageclient-app
+                    docker rm hompageclient-app
+
                 else
                     docker ps -a | grep hompageclient-app
                     if [ $? -eq 0 ]; then
                         docker container start grep hompageclient-app && echo "Container wasnt running - starting it again"
+                        docker stop hompageclient-app
+                        docker rm hompageclient-app
                     else
-                        docker run -d -p 3000:3000 --name hompageclient-app homepageclient_image_v1 && echo "Container didnt exist - created and started it"
+                        echo "Container was not running"
                     fi
                 fi
                 '''
+
+                sh "docker run -d -p 3000:3000 --name hompageclient-app homepageclient_image_v1"
             }
         }
 
@@ -37,7 +45,7 @@ pipeline {
         //  stage('Deploy') {
         //     steps {
         //         sh "docker build -t homepageclient_image_v1 ."
-        //         sh "docker run -d -p 3000:3000 --name hompageclient-app homepageclient_image_v1"
+        //         sh 
 
         //     }
         // }
