@@ -15,12 +15,20 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git url: 'https://github.com/naiveskill/devops.git', branch: 'main'
+                sh "ls"
                 // Change file permisson
-                sh "chmod +x -R ./jenkins"
-                // Run shell script
-                sh "./jenkins/script/scripted_pipeline_ex_2.sh"
+                sh "npm install"
             }
         }
+
+
+         stage('Deploy') {
+            steps {
+                sh "docker build -t homepageClient-image_v1 ."
+                sh "docker run - d -p 3000:3000 --name hompageclient-app homepageClient-image_v1"
+
+            }
+        }
+
     }
 }
