@@ -11,16 +11,6 @@ pipeline {
             }
             
         }
-        
-        stage('Build') {
-            steps {
-                // Get some code from a GitHub repository
-                sh "ls"
-                sh "pwd"
-                // Change file permisson
-                sh "npm install"
-            }
-        }
 
 
          stage('Deploy') {
