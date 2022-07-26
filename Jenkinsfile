@@ -15,8 +15,8 @@ pipeline {
 
          stage('Deploy') {
             steps {
-                sh "docker build -t homepageClient-image_v1 ."
-                sh "docker run - d -p 3000:3000 --name hompageclient-app homepageClient-image_v1"
+                sh "docker build -t homepageClient_image_v1 ."
+                sh "docker run - d -p 3000:3000 --name hompageclient-app homepageClient_image_v1"
 
             }
         }
